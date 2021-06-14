@@ -134,7 +134,70 @@ img.add_border {
           
         </header>
     <div id="tipue_search_content">W16 << <a href='W16.html'>Previous</a> <a href='鍵盤指令程式.html'>Next</a> >> 鍵盤指令程式<br /><h1>lua程式碼</h1>
-<br />W16 << <a href='W16.html'>Previous</a> <a href='鍵盤指令程式.html'>Next</a> >> 鍵盤指令程式</div>
+<p>W16 exam lua程式執行<span> (0.2, 0.7, 0.05) 與 (-0.3, -0.55, 0.05)兩位置放置 <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen" frameborder="0" height="315" src="https://www.youtube.com/embed/BvAVW7s65TQ" title="YouTube video player" width="560"></iframe>以下為lua程式碼:</span></p>
+<pre class="brush:lua;auto-links:false;toolbar:false" contenteditable="false">function moving(x,y)
+    a=0.55
+    b=0.368
+    c=math.pow((math.pow(x,2)+math.pow(y,2)),0.5)
+    s=(a+b+c)/2
+    area=math.pow((s*(s-a)*(s-b)*(s-c)),0.5)
+    h=area/(2*c)
+    deg1_base=math.atan(x/y)
+    if x&lt;0 and y&lt;0 then
+        deg1_base=deg1_base+math.pi
+    end
+    deg1_tri=math.atan(h/a)
+    deg1=deg1_base+deg1_tri
+    deg2=math.pi-(0.5*math.pi-deg1_tri)-math.acos(h/b)
+    deg3=deg2-deg1
+    sim.setJointTargetPosition(joint01,deg1)
+    sim.setJointTargetPosition(joint02,-deg2)
+    sim.setJointTargetPosition(joint03,deg3)
+end
+
+
+function sysCall_threadmain()
+   joint01=sim.getObjectHandle('joint01')
+   joint02=sim.getObjectHandle('joint02')
+   joint03=sim.getObjectHandle('joint03')
+   jointz=sim.getObjectHandle('jointz')
+   sim.setJointTargetPosition(joint01,0)
+   sim.setJointTargetPosition(joint02,0)
+   sim.setJointTargetPosition(joint03,0)
+   sim.setJointTargetPosition(jointz,0)
+   sim.setIntegerSignal("pad_switch",1)
+   sim.setJointTargetPosition(jointz,-0.04)
+   sim.wait(5)
+   while sim.getSimulationState()~=sim.simulation_advancing_abouttostopre do
+       sim.setJointTargetPosition(jointz,0)
+       moving(0.2,0.7)
+       sim.wait(5)
+       sim.setIntegerSignal("pad_switch",0)
+       sim.wait(5)
+       sim.setIntegerSignal("pad_switch",1)
+       sim.setJointTargetPosition(jointz,-0.04)
+       sim.wait(5)
+       sim.setJointTargetPosition(jointz,0)
+       sim.wait(5)
+       moving(-0.3,-0.55)
+       sim.wait(5)
+       sim.setIntegerSignal("pad_switch",0)
+       sim.wait(5)
+       sim.setIntegerSignal("pad_switch",1)
+       sim.setJointTargetPosition(jointz,-0.04)
+       sim.wait(5)
+       sim.setJointTargetPosition(jointz,0)
+       sim.wait(5)
+       end
+end
+
+function sysCall_cleanup()
+    -- Put some clean-up code here
+end
+
+-- See the user manual or the available code snippets for additional callback functions and details
+</pre>
+<p></p><br />W16 << <a href='W16.html'>Previous</a> <a href='鍵盤指令程式.html'>Next</a> >> 鍵盤指令程式</div>
         
     <!-- footer -->
       <div class="container">
