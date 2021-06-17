@@ -250,7 +250,6 @@ end
 </pre>
 <h4><strong>程式碼解說:</strong></h4>
 <pre class="brush:lua;auto-links:false;toolbar:false" contenteditable="false">function moving(x,y)</pre>
-<p></p>
 <p>計算座標(x,y)的方程式</p>
 <pre class="brush:lua;auto-links:false;toolbar:false" contenteditable="false">function sysCall_threadmain()</pre>
 <p>主程式的方程式</p>
@@ -262,6 +261,9 @@ end
 <p>表示等待時間為5秒。</p>
 <pre class="brush:lua;auto-links:false;toolbar:false" contenteditable="false">while sim.getSimulationState()~=sim.simulation_advancing_abouttostopre do</pre>
 <p>循環第35行到第53行的程式碼</p>
+<pre class="brush:lua;auto-links:false;toolbar:false" contenteditable="false">sim.setIntegerSignal("pad_switch",0)
+sim.setIntegerSignal("pad_switch",1)</pre>
+<p>此為吸盤控制程式，"0"為吸取，"1"為放下</p>
 <h5><strong></strong></h5><h2>鍵盤指令程式</h2>
 <p><a href="/downloads/w16 keybroad.ttt">W16 keyboard coppeliasim 場景檔</a></p>
 <p><strong>鍵盤程式碼指令</strong></p>
