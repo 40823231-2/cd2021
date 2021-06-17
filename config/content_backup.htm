@@ -183,6 +183,7 @@ else:
 <h1>W16</h1>
 <p><a href="/downloads/w16.ttt" title="MTB_ROBOT coppeliasim圖檔">MTB_ROBOT coppeliasim場景檔</a></p>
 <p>onshape圖檔:<a href="https://cad.onshape.com/documents/04a281dcf22a682742d498db/w/7d59cd5d07f48e48326d56d5/e/fd8977c50133795f34faad12">https://cad.onshape.com/documents/04a281dcf22a682742d498db/w/7d59cd5d07f48e48326d56d5/e/fd8977c50133795f34faad12</a></p>
+<p><img alt="" height="235" src="/images/chrome_wnfiamR8Td.png" width="500"/></p>
 <p>雲端檔案:<a href="https://drive.google.com/file/d/1Mi5EFiGo5KJ4idQQeo2381ZbJ2FWIqPF/view?usp=sharing">https://drive.google.com/file/d/1Mi5EFiGo5KJ4idQQeo2381ZbJ2FWIqPF/view?usp=sharing</a></p>
 <p></p><h2>lua程式碼</h2>
 <p><a href="/downloads/w16 lua.ttt">W16 lua coppeliasim 場景檔</a></p>
@@ -246,16 +247,22 @@ function sysCall_threadmain()
        sim.wait(5)
        end
 end
-
-function sysCall_cleanup()
-    -- Put some clean-up code here
-end
-
--- See the user manual or the available code snippets for additional callback functions and details
 </pre>
-<p><strong>程式碼解說</strong></p>
+<h4><strong>程式碼解說:</strong></h4>
+<pre class="brush:lua;auto-links:false;toolbar:false" contenteditable="false">function moving(x,y)</pre>
 <p></p>
-<p></p><h2>鍵盤指令程式</h2>
+<p>計算座標(x,y)的方程式</p>
+<pre class="brush:lua;auto-links:false;toolbar:false" contenteditable="false">function sysCall_threadmain()</pre>
+<p>主程式的方程式</p>
+<pre class="brush:lua;auto-links:false;toolbar:false" contenteditable="false">joint01=sim.getObjectHandle('joint01')</pre>
+<p>表示coppeliasim中joint01的軸在程式中的的名稱。</p>
+<pre class="brush:lua;auto-links:false;toolbar:false" contenteditable="false">sim.setJointTargetPosition(joint01,0)</pre>
+<p>表示設定軸joint01在0的位置。</p>
+<pre class="brush:lua;auto-links:false;toolbar:false" contenteditable="false">sim.wait(5)</pre>
+<p>表示等待時間為5秒。</p>
+<pre class="brush:lua;auto-links:false;toolbar:false" contenteditable="false">while sim.getSimulationState()~=sim.simulation_advancing_abouttostopre do</pre>
+<p>循環第35行到第53行的程式碼</p>
+<h5><strong></strong></h5><h2>鍵盤指令程式</h2>
 <p><a href="/downloads/w16 keybroad.ttt">W16 keyboard coppeliasim 場景檔</a></p>
 <p><strong>鍵盤程式碼指令</strong></p>
 <p>方向左鍵:主臂向左 <span>方向右鍵:主臂向右</span></p>
@@ -402,5 +409,6 @@ if clientID != -1:
 
 </pre>
 <p></p><h2>require</h2>
+<p><a href="/downloads/w16 lua.ttt">W16 require coppeliasim 場景檔</a></p>
 <p>使用require操作MTB_ROBOT</p>
 <p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen" frameborder="0" height="315" src="https://www.youtube.com/embed/Bo9Kk6mu-Rs" title="YouTube video player" width="560"></iframe></p>

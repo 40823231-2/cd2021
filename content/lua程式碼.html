@@ -195,16 +195,21 @@ function sysCall_threadmain()
        sim.wait(5)
        end
 end
-
-function sysCall_cleanup()
-    -- Put some clean-up code here
-end
-
--- See the user manual or the available code snippets for additional callback functions and details
 </pre>
-<p><strong>程式碼解說</strong></p>
-<p></p>
-<p></p><br />W16 << <a href='W16.html'>Previous</a> <a href='鍵盤指令程式.html'>Next</a> >> 鍵盤指令程式</div>
+<h4><strong>程式碼解說:</strong></h4>
+<pre class="brush:lua;auto-links:false;toolbar:false" contenteditable="false">function moving(x,y)</pre>
+<p>計算座標(x,y)的方程式</p>
+<pre class="brush:lua;auto-links:false;toolbar:false" contenteditable="false">function sysCall_threadmain()</pre>
+<p>主程式的方程式</p>
+<pre class="brush:lua;auto-links:false;toolbar:false" contenteditable="false">joint01=sim.getObjectHandle('joint01')</pre>
+<p>表示coppeliasim中joint01的軸在程式中的的名稱。</p>
+<pre class="brush:lua;auto-links:false;toolbar:false" contenteditable="false">sim.setJointTargetPosition(joint01,0)</pre>
+<p>表示設定軸joint01在0的位置。</p>
+<pre class="brush:lua;auto-links:false;toolbar:false" contenteditable="false">sim.wait(5)</pre>
+<p>表示等待時間為5秒。</p>
+<pre class="brush:lua;auto-links:false;toolbar:false" contenteditable="false">while sim.getSimulationState()~=sim.simulation_advancing_abouttostopre do</pre>
+<p>循環第35行到第53行的程式碼</p>
+<h5><strong></strong></h5><br />W16 << <a href='W16.html'>Previous</a> <a href='鍵盤指令程式.html'>Next</a> >> 鍵盤指令程式</div>
         
     <!-- footer -->
       <div class="container">
