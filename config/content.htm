@@ -330,8 +330,18 @@ function sysCall_actuation()
 end
 </pre>
 <p></p>
-<p><strong>程式碼解說</strong></p>
-<h2>python remoteApi程式</h2>
+<h4><strong>程式碼解說:</strong></h4>
+<pre class="brush:lua;auto-links:false;toolbar:false" contenteditable="false">    message,auxiliaryData=sim.getSimulatorMessage()
+    while message~=-1 do
+        if (message==sim.message_keypress) then</pre>
+<p>第一行是指數據或是參數會等於模擬得到模擬器的訊息</p>
+<p>第二行是指當訊息不是-1時，得做出以下動作</p>
+<p>第三行是指訊息會等於鍵盤代碼的訊號</p>
+<pre class="brush:lua;auto-links:false;toolbar:false" contenteditable="false">if (auxiliaryData[1]==2009) then
+deg1=deg1+1
+sim.setJointTargetPosition(joint01,deg1*math.pi/180)</pre>
+<p>當鍵盤代號為2009(方向向右)時會執行下面的程式碼</p>
+<p></p><h2>python remoteApi程式</h2>
 <p><a href="/downloads/w16 api.ttt">W16 api coppeliasim 場景檔</a></p>
 <p>使用api操作MTB_ROBOT</p>
 <p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen" frameborder="0" height="315" src="https://www.youtube.com/embed/akKLTKEWFEY" title="YouTube video player" width="560"></iframe></p>
