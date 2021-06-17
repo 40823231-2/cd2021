@@ -257,6 +257,61 @@ end
 <p></p>
 <p></p>
 <h2>鍵盤指令程式</h2>
-<h2>python remoteApi程式</h2>
-<h2>require</h2>
+<pre class="brush:lua;auto-links:false;toolbar:false" contenteditable="false">function sysCall_init()
+    joint01=sim.getObjectHandle('joint01')
+    joint02=sim.getObjectHandle('joint02')
+    joint03=sim.getObjectHandle('joint03')
+    jointz=sim.getObjectHandle('jointz')
+    sim.setJointTargetPosition(joint01,0)
+    sim.setJointTargetPosition(joint02,0)
+    sim.setJointTargetPosition(joint03,0)
+    sim.setJointTargetPosition(jointz,0)
+    deg1=0
+    deg2=0
+    deg3=0
+end
+
+function sysCall_actuation()
+    message,auxiliaryData=sim.getSimulatorMessage()
+    while message~=-1 do
+        if (message==sim.message_keypress) then
+            if (auxiliaryData[1]==2009) then
+            deg1=deg1+1
+            sim.setJointTargetPosition(joint01,deg1*math.pi/180)
+            end
+            if (auxiliaryData[1]==2010) then
+            deg1=deg1-1
+            deg3=deg2-deg1
+            sim.setJointTargetPosition(joint01,deg1*math.pi/180)
+            end
+            if (auxiliaryData[1]==2007) then
+            deg2=deg2+1
+            deg3=deg1-deg2
+            sim.setJointTargetPosition(joint02,deg2*math.pi/180)
+            end
+            if (auxiliaryData[1]==2008) then
+            deg2=deg2-1
+            deg3=deg1-deg2
+            sim.setJointTargetPosition(joint02,deg2*math.pi/180)
+            end
+            if (auxiliaryData[1]==97) then
+                sim.setJointTargetPosition(jointz,-0.037)
+                sim.setIntegerSignal("pad_switch",1)
+            end
+            if(auxiliaryData[1]==116) then
+                sim.setJointTargetPosition(jointz,0)
+            end
+            if(auxiliaryData[1]==115) then
+                sim.setIntegerSignal("pad_switch",0)
+            end
+            sim.setJointTargetPosition(joint03,deg3*math.pi/180)
+        end
+    message,auxiliaryData=sim.getSimulatorMessage()
+    end
+end
+</pre>
 <p></p>
+<p>程式碼解說</p><h2>python remoteApi程式</h2>
+<h2>require</h2>
+<p>使用require操作MTB_ROBOT</p>
+<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen" frameborder="0" height="315" src="https://www.youtube.com/embed/Bo9Kk6mu-Rs" title="YouTube video player" width="560"></iframe></p>
