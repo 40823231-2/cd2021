@@ -423,8 +423,15 @@ if clientID != -1:
     
 
 </pre>
-<p></p>
-<h2>require</h2>
+<p><strong>程式碼解說:</strong></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">ret,joint01=vrep.simxGetObjectHandle(clientID,"joint01",opmode)
+vrep.simxSetJointTargetPosition(clientID,joint01,0,opmode)
+vrep.simxSetIntegerSignal(clientID,"pad_switch",1,opmode)</pre>
+<p>此三行程式碼對應到lua程式碼為:</p>
+<pre class="brush:lua;auto-links:false;toolbar:false" contenteditable="false">joint01=sim.getObjectHandle('joint01')
+sim.setJointTargetPosition(joint01,0)
+sim.setIntegerSignal("pad_switch",1)</pre>
+<p></p><h2>require</h2>
 <p><a href="/downloads/w16 lua.ttt">W16 require coppeliasim 場景檔</a></p>
 <p>使用require操作MTB_ROBOT</p>
 <p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen" frameborder="0" height="315" src="https://www.youtube.com/embed/Bo9Kk6mu-Rs" title="YouTube video player" width="560"></iframe></p>
