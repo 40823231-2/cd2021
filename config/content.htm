@@ -64,7 +64,8 @@
 <p><img alt="" height="189" src="/images/14.png" width="500"/></p>
 <p><strong>組合圖</strong></p>
 <p><img caption="false" height="300" src="/images/火車組合(1).png" width="500"/></p>
-<p></p><h2>W8~W9CoppeliaSim程式模擬</h2>
+<p></p>
+<h2>W8~W9CoppeliaSim程式模擬</h2>
 <p>CoppeliaSim程式模擬</p>
 <p><a href="/downloads/40823231.ttt" title="火車輪CoppeliaSim模擬">火車輪CoppeliaSim模擬</a></p>
 <p><img alt="" height="280" src="/images/stage2.png" width="500"/></p>
@@ -146,6 +147,65 @@ else:
 <h3>第15週</h3>
 <p>遠距直播教學影片</p>
 <p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen" frameborder="0" height="315" src="https://www.youtube.com/embed/BgpkTsfDuXI" title="YouTube video player" width="560"></iframe></p>
+<h2>模擬影片</h2>
+<p><a href="/downloads/stage3 train.ttt">火車 coppeliasim場景檔</a></p>
+<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen" frameborder="0" height="315" src="https://www.youtube.com/embed/UaGLcyiS1HA" title="YouTube video player" width="560"></iframe></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">import sim as vrep
+import math
+import random
+import time
+import keyboard
+ 
+print ('Start')
+ 
+# Close eventual old connections
+vrep.simxFinish(-1)
+# Connect to V-REP remote server
+clientID = vrep.simxStart('192.168.1.110', 19997, True, True, 5000, 5)
+  
+if clientID !=-1:
+    print ('Connected to remote API server')
+   
+    res = vrep.simxAddStatusbarMessage(
+        clientID, "all start",
+        vrep.simx_opmode_oneshot)
+          
+    if res not in (vrep.simx_return_ok, vrep.simx_return_novalue_flag):
+        print("Could not add a message to the status bar.")
+          
+    opmode = vrep.simx_opmode_oneshot_wait
+     
+    vrep.simxStartSimulation(clientID, opmode)
+    ret,wheel1=vrep.simxGetObjectHandle(clientID,"wheel_1",opmode)
+    ret,wheel2=vrep.simxGetObjectHandle(clientID,"wheel_2",opmode)
+    ret,wheel3=vrep.simxGetObjectHandle(clientID,"wheel_3",opmode)
+    ret,wheel4=vrep.simxGetObjectHandle(clientID,"wheel_4",opmode)
+
+    while True:
+        if keyboard.is_pressed("g"):
+            vrep.simxSetJointTargetVelocity(clientID,wheel1,20,opmode)
+            vrep.simxSetJointTargetVelocity(clientID,wheel2,20,opmode)
+            vrep.simxSetJointTargetVelocity(clientID,wheel3,20,opmode)
+            vrep.simxSetJointTargetVelocity(clientID,wheel4,20,opmode)
+            print("go")
+            
+        if keyboard.is_pressed("r"):
+            vrep.simxSetJointTargetVelocity(clientID,wheel1,-20,opmode)
+            vrep.simxSetJointTargetVelocity(clientID,wheel2,-20,opmode)
+            vrep.simxSetJointTargetVelocity(clientID,wheel3,-20,opmode)
+            vrep.simxSetJointTargetVelocity(clientID,wheel4,-20,opmode)
+            print("back")
+            
+        if keyboard.is_pressed("s"):
+            vrep.simxSetJointTargetVelocity(clientID,wheel1,0,opmode)
+            vrep.simxSetJointTargetVelocity(clientID,wheel2,0,opmode)
+            vrep.simxSetJointTargetVelocity(clientID,wheel3,0,opmode)
+            vrep.simxSetJointTargetVelocity(clientID,wheel4,0,opmode)
+            print("stop")
+        
+else:
+    print ('Failed connecting to  remote API server')
+    print ('End')</pre>
 <h1>W15</h1>
 <h2>影片整理</h2>
 <p>影片一</p>
@@ -195,7 +255,8 @@ else:
 <p><strong>onshape圖檔:</strong><a href="https://cad.onshape.com/documents/04a281dcf22a682742d498db/w/7d59cd5d07f48e48326d56d5/e/fd8977c50133795f34faad12">https://cad.onshape.com/documents/04a281dcf22a682742d498db/w/7d59cd5d07f48e48326d56d5/e/fd8977c50133795f34faad12</a></p>
 <p><img alt="" height="235" src="/images/chrome_wnfiamR8Td.png" width="500"/></p>
 <p><strong>雲端檔案:</strong><a href="https://drive.google.com/file/d/1Mi5EFiGo5KJ4idQQeo2381ZbJ2FWIqPF/view?usp=sharing">https://drive.google.com/file/d/1Mi5EFiGo5KJ4idQQeo2381ZbJ2FWIqPF/view?usp=sharing</a></p>
-<p></p><h2>lua程式碼</h2>
+<p></p>
+<h2>lua程式碼</h2>
 <p><a href="/downloads/w16 lua.ttt">W16 lua coppeliasim 場景檔</a></p>
 <p>W16 exam lua程式執行<span> (0.2, 0.7, 0.05) 與 (-0.3, -0.55, 0.05)兩位置放置</span></p>
 <p><span> <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen" frameborder="0" height="315" src="https://www.youtube.com/embed/BvAVW7s65TQ" title="YouTube video player" width="560"></iframe></span></p>
@@ -274,7 +335,8 @@ end
 <pre class="brush:lua;auto-links:false;toolbar:false" contenteditable="false">sim.setIntegerSignal("pad_switch",0)
 sim.setIntegerSignal("pad_switch",1)</pre>
 <p>此為吸盤控制程式，"0"為吸取，"1"為放下</p>
-<h5><strong></strong></h5><h2>鍵盤指令程式</h2>
+<h5><strong></strong></h5>
+<h2>鍵盤指令程式</h2>
 <p><a href="/downloads/w16 keybroad.ttt">W16 keyboard coppeliasim 場景檔</a></p>
 <p><strong>鍵盤程式碼指令</strong></p>
 <p>方向左鍵:主臂向左 <span>方向右鍵:主臂向右</span></p>
@@ -349,7 +411,8 @@ end
 deg1=deg1+1
 sim.setJointTargetPosition(joint01,deg1*math.pi/180)</pre>
 <p>當鍵盤代號為2009(方向向右)時會執行下面的程式碼</p>
-<p></p><h2>python remoteApi程式</h2>
+<p></p>
+<h2>python remoteApi程式</h2>
 <p><a href="/downloads/w16 api.ttt">W16 api coppeliasim 場景檔</a></p>
 <p>使用api操作MTB_ROBOT</p>
 <p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen" frameborder="0" height="315" src="https://www.youtube.com/embed/akKLTKEWFEY" title="YouTube video player" width="560"></iframe></p>
@@ -439,11 +502,13 @@ vrep.simxSetIntegerSignal(clientID,"pad_switch",1,opmode)</pre>
 <pre class="brush:lua;auto-links:false;toolbar:false" contenteditable="false">joint01=sim.getObjectHandle('joint01')
 sim.setJointTargetPosition(joint01,0)
 sim.setIntegerSignal("pad_switch",1)</pre>
-<p></p><h2>require</h2>
+<p></p>
+<h2>require</h2>
 <p><a href="/downloads/w16 lua.ttt">W16 require coppeliasim 場景檔</a></p>
 <p>使用require操作MTB_ROBOT</p>
 <p>使用時須將coppeliasim檔案與lua程式檔存在同個資料夾中</p>
-<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen" frameborder="0" height="315" src="https://www.youtube.com/embed/Bo9Kk6mu-Rs" title="YouTube video player" width="560"></iframe></p><h2>吸盤程式</h2>
+<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen" frameborder="0" height="315" src="https://www.youtube.com/embed/Bo9Kk6mu-Rs" title="YouTube video player" width="560"></iframe></p>
+<h2>吸盤程式</h2>
 <p>程式由40823214同學提供</p>
 <pre class="brush:lua;auto-links:false;toolbar:false" contenteditable="false">function sysCall_init() 
     objectHandle=sim.getObjectHandle('suctionPad')

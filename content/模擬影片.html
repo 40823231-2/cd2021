@@ -133,8 +133,66 @@ img.add_border {
           </div>
           
         </header>
-    <div id="tipue_search_content">task2 << <a href='task2.html'>Previous</a> <a href='第11週.html'>Next</a> >> 第11週<br /><h1>task3</h1>
-<br />task2 << <a href='task2.html'>Previous</a> <a href='第11週.html'>Next</a> >> 第11週</div>
+    <div id="tipue_search_content">第15週 << <a href='第15週.html'>Previous</a> <a href='W15.html'>Next</a> >> W15<br /><h1>模擬影片</h1>
+<p><a href="./../downloads/stage3 train.ttt">火車 coppeliasim場景檔</a></p>
+<p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen" frameborder="0" height="315" src="https://www.youtube.com/embed/UaGLcyiS1HA" title="YouTube video player" width="560"></iframe></p>
+<pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">import sim as vrep
+import math
+import random
+import time
+import keyboard
+ 
+print ('Start')
+ 
+# Close eventual old connections
+vrep.simxFinish(-1)
+# Connect to V-REP remote server
+clientID = vrep.simxStart('192.168.1.110', 19997, True, True, 5000, 5)
+  
+if clientID !=-1:
+    print ('Connected to remote API server')
+   
+    res = vrep.simxAddStatusbarMessage(
+        clientID, "all start",
+        vrep.simx_opmode_oneshot)
+          
+    if res not in (vrep.simx_return_ok, vrep.simx_return_novalue_flag):
+        print("Could not add a message to the status bar.")
+          
+    opmode = vrep.simx_opmode_oneshot_wait
+     
+    vrep.simxStartSimulation(clientID, opmode)
+    ret,wheel1=vrep.simxGetObjectHandle(clientID,"wheel_1",opmode)
+    ret,wheel2=vrep.simxGetObjectHandle(clientID,"wheel_2",opmode)
+    ret,wheel3=vrep.simxGetObjectHandle(clientID,"wheel_3",opmode)
+    ret,wheel4=vrep.simxGetObjectHandle(clientID,"wheel_4",opmode)
+
+    while True:
+        if keyboard.is_pressed("g"):
+            vrep.simxSetJointTargetVelocity(clientID,wheel1,20,opmode)
+            vrep.simxSetJointTargetVelocity(clientID,wheel2,20,opmode)
+            vrep.simxSetJointTargetVelocity(clientID,wheel3,20,opmode)
+            vrep.simxSetJointTargetVelocity(clientID,wheel4,20,opmode)
+            print("go")
+            
+        if keyboard.is_pressed("r"):
+            vrep.simxSetJointTargetVelocity(clientID,wheel1,-20,opmode)
+            vrep.simxSetJointTargetVelocity(clientID,wheel2,-20,opmode)
+            vrep.simxSetJointTargetVelocity(clientID,wheel3,-20,opmode)
+            vrep.simxSetJointTargetVelocity(clientID,wheel4,-20,opmode)
+            print("back")
+            
+        if keyboard.is_pressed("s"):
+            vrep.simxSetJointTargetVelocity(clientID,wheel1,0,opmode)
+            vrep.simxSetJointTargetVelocity(clientID,wheel2,0,opmode)
+            vrep.simxSetJointTargetVelocity(clientID,wheel3,0,opmode)
+            vrep.simxSetJointTargetVelocity(clientID,wheel4,0,opmode)
+            print("stop")
+        
+else:
+    print ('Failed connecting to  remote API server')
+    print ('End')</pre>
+<br />第15週 << <a href='第15週.html'>Previous</a> <a href='W15.html'>Next</a> >> W15</div>
         
     <!-- footer -->
       <div class="container">
