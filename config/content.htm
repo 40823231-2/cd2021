@@ -55,7 +55,16 @@
 <p><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen" frameborder="0" height="315" src="https://www.youtube.com/embed/G7PokhWPikQ" title="YouTube video player" width="560"></iframe></p>
 <h2>W7~W8零件圖</h2>
 <p>零件繪製以及修改</p>
-<h2>W8~W9CoppeliaSim程式模擬</h2>
+<p><strong>零件圖</strong></p>
+<p><img alt="" height="188" src="/images/2.png" width="500"/></p>
+<p><img alt="" height="321" src="/images/3.png" width="500"/></p>
+<p><img alt="" height="184" src="/images/1.png" width="500"/></p>
+<p><img alt="" height="186" src="/images/10.png" width="500"/></p>
+<p><img alt="" height="188" src="/images/12.png" width="500"/></p>
+<p><img alt="" height="189" src="/images/14.png" width="500"/></p>
+<p><strong>組合圖</strong></p>
+<p><img caption="false" height="300" src="/images/火車組合(1).png" width="500"/></p>
+<p></p><h2>W8~W9CoppeliaSim程式模擬</h2>
 <p>CoppeliaSim程式模擬</p>
 <p><a href="/downloads/40823231.ttt" title="火車輪CoppeliaSim模擬">火車輪CoppeliaSim模擬</a></p>
 <p><img alt="" height="280" src="/images/stage2.png" width="500"/></p>
@@ -181,12 +190,12 @@ else:
 <p></p>
 <p></p>
 <h1>W16</h1>
-<p><a href="/downloads/w16.ttt" title="MTB_ROBOT coppeliasim圖檔">MTB_ROBOT coppeliasim場景檔</a></p>
-<p>onshape圖檔:<a href="https://cad.onshape.com/documents/04a281dcf22a682742d498db/w/7d59cd5d07f48e48326d56d5/e/fd8977c50133795f34faad12">https://cad.onshape.com/documents/04a281dcf22a682742d498db/w/7d59cd5d07f48e48326d56d5/e/fd8977c50133795f34faad12</a></p>
+<p>程式碼由40823214同學教學提供~</p>
+<p><strong><a href="/downloads/w16.ttt" title="MTB_ROBOT coppeliasim圖檔">MTB_ROBOT coppeliasim場景檔</a></strong></p>
+<p><strong>onshape圖檔:</strong><a href="https://cad.onshape.com/documents/04a281dcf22a682742d498db/w/7d59cd5d07f48e48326d56d5/e/fd8977c50133795f34faad12">https://cad.onshape.com/documents/04a281dcf22a682742d498db/w/7d59cd5d07f48e48326d56d5/e/fd8977c50133795f34faad12</a></p>
 <p><img alt="" height="235" src="/images/chrome_wnfiamR8Td.png" width="500"/></p>
-<p>雲端檔案:<a href="https://drive.google.com/file/d/1Mi5EFiGo5KJ4idQQeo2381ZbJ2FWIqPF/view?usp=sharing">https://drive.google.com/file/d/1Mi5EFiGo5KJ4idQQeo2381ZbJ2FWIqPF/view?usp=sharing</a></p>
-<p></p>
-<h2>lua程式碼</h2>
+<p><strong>雲端檔案:</strong><a href="https://drive.google.com/file/d/1Mi5EFiGo5KJ4idQQeo2381ZbJ2FWIqPF/view?usp=sharing">https://drive.google.com/file/d/1Mi5EFiGo5KJ4idQQeo2381ZbJ2FWIqPF/view?usp=sharing</a></p>
+<p></p><h2>lua程式碼</h2>
 <p><a href="/downloads/w16 lua.ttt">W16 lua coppeliasim 場景檔</a></p>
 <p>W16 exam lua程式執行<span> (0.2, 0.7, 0.05) 與 (-0.3, -0.55, 0.05)兩位置放置</span></p>
 <p><span> <iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="allowfullscreen" frameborder="0" height="315" src="https://www.youtube.com/embed/BvAVW7s65TQ" title="YouTube video player" width="560"></iframe></span></p>
@@ -249,7 +258,7 @@ function sysCall_threadmain()
        end
 end
 </pre>
-<h4><strong>程式碼解說:</strong></h4>
+<h4><strong>程式碼筆記:</strong></h4>
 <pre class="brush:lua;auto-links:false;toolbar:false" contenteditable="false">function moving(x,y)</pre>
 <p>計算座標(x,y)的方程式</p>
 <pre class="brush:lua;auto-links:false;toolbar:false" contenteditable="false">function sysCall_threadmain()</pre>
@@ -265,8 +274,7 @@ end
 <pre class="brush:lua;auto-links:false;toolbar:false" contenteditable="false">sim.setIntegerSignal("pad_switch",0)
 sim.setIntegerSignal("pad_switch",1)</pre>
 <p>此為吸盤控制程式，"0"為吸取，"1"為放下</p>
-<h5><strong></strong></h5>
-<h2>鍵盤指令程式</h2>
+<h5><strong></strong></h5><h2>鍵盤指令程式</h2>
 <p><a href="/downloads/w16 keybroad.ttt">W16 keyboard coppeliasim 場景檔</a></p>
 <p><strong>鍵盤程式碼指令</strong></p>
 <p>方向左鍵:主臂向左 <span>方向右鍵:主臂向右</span></p>
@@ -330,7 +338,7 @@ function sysCall_actuation()
 end
 </pre>
 <p></p>
-<h4><strong>程式碼解說:</strong></h4>
+<h4><strong>程式碼筆記:</strong></h4>
 <pre class="brush:lua;auto-links:false;toolbar:false" contenteditable="false">    message,auxiliaryData=sim.getSimulatorMessage()
     while message~=-1 do
         if (message==sim.message_keypress) then</pre>
@@ -423,7 +431,7 @@ if clientID != -1:
     
 
 </pre>
-<p><strong>程式碼解說:</strong></p>
+<p><strong>程式碼筆記:</strong></p>
 <pre class="brush:py;auto-links:false;toolbar:false" contenteditable="false">ret,joint01=vrep.simxGetObjectHandle(clientID,"joint01",opmode)
 vrep.simxSetJointTargetPosition(clientID,joint01,0,opmode)
 vrep.simxSetIntegerSignal(clientID,"pad_switch",1,opmode)</pre>
